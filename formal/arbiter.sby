@@ -1,0 +1,17 @@
+[options]
+# Bounded Model Checking (BMC) - checks properties starting from reset
+mode bmc
+# Check up to 10 clock cycles (plenty for our max-wait of 2)
+depth 10
+
+[engines]
+# Use the open-source SMT solver
+smtbmc boolector
+
+[script]
+# Read the SystemVerilog file and prep the top module
+read -formal arbiter.sv
+prep -top rr_arbiter
+
+[files]
+arbiter.sv
